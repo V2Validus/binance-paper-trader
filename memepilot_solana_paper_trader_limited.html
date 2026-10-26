@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1019">
+<title>MemePilot — Solana Paper Trader</title>
+<style>
+:root{--bg:#0b1019;--panel:#121a27;--panel2:#182334;--line:#263449;--text:#edf4ff;--muted:#91a2ba;--green:#3ee0a0;--red:#ff6b7b;--purple:#a994ff;--blue:#7ab7ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:14px}
+button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:11px;padding:11px 13px;font-weight:750;background:var(--green);color:#07140f}button:disabled{opacity:.45;cursor:not-allowed}.secondary{background:#263449;color:var(--text)}.danger{background:#4b2631;color:#ffdce1}.muted{color:var(--muted)}.app{max-width:1120px;margin:auto;padding:16px 14px 36px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.brand{display:flex;align-items:center;gap:10px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,#62f4b7,#8972ff);display:grid;place-items:center;color:#08120f;font-weight:1000;font-size:20px}.brand h1{font-size:19px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;color:#b8c7da;font-size:11px;white-space:nowrap}.dot{width:7px;height:7px;border-radius:50%;background:var(--green)}.hero{border:1px solid #2c3d55;border-radius:20px;background:radial-gradient(ellipse at top left,#25314a 0%,#121a27 56%);padding:19px;margin-bottom:14px}.heroTop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.eyebrow{font-size:11px;letter-spacing:.1em;color:var(--green);font-weight:850}.hero h2{font-size:24px;line-height:1.2;margin:8px 0}.hero p{color:var(--muted);margin:0;max-width:540px;line-height:1.6}.heroActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px}.stat{padding:14px}.stat .label{color:var(--muted);font-size:12px}.stat .value{font-size:21px;font-weight:850;margin-top:8px;letter-spacing:-.03em}.stat .sub{font-size:11px;color:var(--muted);margin-top:4px}.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.85fr);gap:14px;align-items:start}.panel{padding:15px;margin-bottom:14px;min-width:0}.panelHead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}.panel h3{font-size:15px;margin:0}.panelHead small{color:var(--muted)}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.toolbar input,.toolbar select,.field input,.field select{min-width:0;background:#0c1320;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px}.toolbar input{flex:1;min-width:130px}.tableWrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:490px;text-align:right}th{font-size:11px;color:var(--muted);font-weight:650;padding:10px 8px;border-bottom:1px solid var(--line)}td{padding:12px 8px;border-bottom:1px solid #202d40;font-size:12px;white-space:nowrap}tr:last-child td{border-bottom:0}.coin{display:flex;align-items:center;gap:8px}.coinIcon{width:31px;height:31px;border-radius:50%;background:#293951;display:grid;place-items:center;font-weight:900;color:#c7d7ee;flex-shrink:0}.coinName{font-weight:800;font-size:12px}.coinSub{font-size:10px;color:var(--muted);margin-top:3px}.buyBtn,.sellBtn{padding:7px 10px;font-size:11px;border-radius:8px}.sellBtn{background:#462733;color:#ffb9c4}.green{color:var(--green)}.red{color:var(--red)}.empty{padding:25px 8px;text-align:center;color:var(--muted);line-height:1.6}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}.field label{font-size:12px;color:#b9c8da}.field input,.field select{width:100%}.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.wide{width:100%}.note{border-radius:12px;padding:11px 12px;background:#1b2939;color:#b9c8da;font-size:12px;line-height:1.55;margin-top:12px}.warning{border:1px solid #6b5230;background:#30281b;color:#f1d6a4}.status{font-size:12px;color:var(--muted);line-height:1.5}.holding{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}.holding:last-child{border-bottom:0}.holding strong{display:block;font-size:12px}.holding small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.holdingRight{text-align:left}.holdingRight strong{font-variant-numeric:tabular-nums}.historyItem{padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;font-size:12px}.historyItem:last-child{border-bottom:0}.historyItem small{display:block;color:var(--muted);margin-top:4px}.footer{text-align:center;color:#71829a;font-size:11px;line-height:1.6;margin-top:18px}.mobileNav{display:none}
+@media(max-width:760px){.app{padding:12px 10px 28px}.brand h1{font-size:17px}.hero{padding:16px}.hero h2{font-size:21px}.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stat{padding:12px}.stat .value{font-size:19px}.layout{grid-template-columns:1fr}.panel{padding:13px}.desktopOnly{display:none}.mobileNav{display:flex;gap:8px;overflow:auto;margin:0 0 12px}.mobileNav a{flex:1;text-align:center;text-decoration:none;color:#cbd7e7;background:#182334;border:1px solid var(--line);padding:10px 8px;border-radius:10px;font-size:12px;white-space:nowrap}.heroActions button{flex:1}.tableWrap{margin:0 -3px}.pill{font-size:10px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+ <div class="brand"><div class="logo">M</div><div><h1>MemePilot</h1><p>Solana · Paper Trading</p></div></div>
+ <span class="pill"><span class="dot"></span><span id="connectionText">מצב סימולציה</span></span>
+</header>
+<section class="hero">
+ <div class="heroTop"><div><div class="eyebrow">MEMECOIN RADAR / SOLANA</div><h2>סורקים הזדמנויות.<br>מתאמנים בלי כסף אמיתי.</h2><p>לוח מסחר מדומה עם מחירי שוק כשזמינים, תיק וירטואלי, ובקרת סיכון. אין כאן חיבור לארנק ואין עסקאות אמיתיות.</p></div><span class="pill">🛡️ PAPER ONLY</span></div>
+ <div class="heroActions"><button id="refreshBtn">↻ רענן מטבעות</button><button class="secondary" id="resetBtn">איפוס סימולציה</button></div>
+</section>
+<div class="mobileNav"><a href="#markets">שווקים</a><a href="#portfolio">תיק וירטואלי</a><a href="#settings">הגדרות</a></div>
+<section class="stats">
+ <div class="stat"><div class="label">שווי תיק וירטואלי</div><div class="value" id="equity">$1,000.00</div><div class="sub">מזומן + שווי החזקות</div></div>
+ <div class="stat"><div class="label">רווח / הפסד כולל</div><div class="value" id="pnl">$0.00</div><div class="sub" id="pnlPct">0.00% מאז ההתחלה</div></div>
+ <div class="stat"><div class="label">מזומן זמין</div><div class="value" id="cash">$1,000.00</div><div class="sub">לרכישות מדומות</div></div>
+ <div class="stat"><div class="label">החזקות פתוחות</div><div class="value" id="holdCount">0</div><div class="sub">מטבעות בתיק</div></div>
+</section>
+<div class="layout">
+ <main>
+  <section class="panel" id="markets">
+   <div class="panelHead"><h3>🌊 שוק Solana</h3><small id="updatedAt">טוען נתונים…</small></div>
+   <div class="toolbar"><input id="search" type="search" placeholder="חיפוש שם או סימול…"><select id="sort"><option value="volume">נפח 24 שעות</option><option value="change">שינוי %</option><option value="liquidity">נזילות</option></select></div>
+   <div class="status" id="marketStatus">מנסה לטעון מטבעות מ-DexScreener. אם אין חיבור, יוצגו נתוני דוגמה בלבד.</div>
+   <div class="tableWrap"><table><thead><tr><th>מטבע</th><th>מחיר</th><th>24 שעות</th><th>נפח 24ש׳</th><th>פעולה</th></tr></thead><tbody id="marketRows"></tbody></table></div>
+   <div class="note warning">⚠️ מימקוינס עלולים לאבד את רוב ערכם במהירות. נתוני שוק, נזילות וסימוני סיכון אינם מבטיחים שמטבע בטוח או שניתן למכור אותו.</div>
+  </section>
+  <section class="panel" id="portfolio">
+   <div class="panelHead"><h3>💼 התיק הווירטואלי</h3><small id="holdingSummary">0 החזקות</small></div>
+   <div id="holdings"><div class="empty">עדיין אין החזקות.<br>בחר מטבע ולחץ על ״קנה״ כדי לתרגל.</div></div>
+  </section>
+  <section class="panel">
+   <div class="panelHead"><h3>🧾 היסטוריית עסקאות</h3><small id="tradeCount">0 עסקאות</small></div>
+   <div id="history"><div class="empty">העסקאות המדומות שלך יופיעו כאן.</div></div>
+  </section>
+ </main>
+ <aside>
+  <section class="panel" id="settings">
+   <div class="panelHead"><h3>⚙️ הגדרות סימולציה</h3><small>וירטואלי בלבד</small></div>
+   <div class="field"><label for="startingCash">יתרת פתיחה בדולרים</label><input id="startingCash" type="number" min="10" max="1000000" step="10" value="1000"></div>
+   <button class="secondary wide" id="applyCash">הגדר יתרת פתיחה מחדש</button>
+   <div class="row2">
+    <div class="field"><label for="tradeSize">גודל עסקה ($)</label><input id="tradeSize" type="number" min="1" step="1" value="25"></div>
+    <div class="field"><label for="maxPosition">מקס׳ למטבע ($)</label><input id="maxPosition" type="number" min="1" step="1" value="100"></div>
+   </div>
+   <div class="row2">
+    <div class="field"><label for="stopLoss">עצירת הפסד (%)</label><input id="stopLoss" type="number" min="1" max="90" value="15"></div>
+    <div class="field"><label for="takeProfit">יעד רווח (%)</label><input id="takeProfit" type="number" min="1" max="500" value="30"></div>
+   </div>
+   <button class="wide" id="saveSettings">שמור הגדרות</button>
+   <div class="note">הגדרות עצירת הפסד ויעד רווח משמשות למעקב והתראות בתוך הסימולציה. הדף לא מבצע קנייה/מכירה אוטומטית ברשת.</div>
+  </section>
+  <section class="panel">
+   <div class="panelHead"><h3>🔔 מצב המערכת</h3></div>
+   <div class="status" id="systemStatus">הסימולציה מוכנה. מחירי שוק יתעדכנו כאשר מקור הנתונים זמין.</div>
+   <div class="field"><label for="alerts">התראות בדפדפן</label><select id="alerts"><option value="off">כבויות</option><option value="on">אפשר התראות</option></select></div>
+   <button class="secondary wide" id="notifyBtn">בדיקת התראה</button>
+   <div class="note">הדפדפן עשוי לבקש הרשאה. התראות ברקע תלויות בדפדפן ובאירוח האתר.</div>
+  </section>
+ </aside>
+</div>
+<div class="footer">MemePilot הוא כלי לימודי לסימולציית מסחר בלבד — לא ייעוץ השקעות. מחירי הדוגמה אינם נתוני שוק. אין להשתמש במפתחות פרטיים או בביטויי שחזור באתר.</div>
+</div>
+<script>
+(() => {
+'use strict';
+const DEMO = [
+ {name:'Bonk',symbol:'BONK',price:0.0000214,change:4.8,volume:8200000,liquidity:1200000,address:'demo-bonk',demo:true},
+ {name:'dogwifhat',symbol:'WIF',price:0.74,change:-2.6,volume:5400000,liquidity:840000, address:'demo-wif',demo:true},
+ {name:'Popcat',symbol:'POPCAT',price:0.31,change:7.2,volume:2100000,liquidity:420000,address:'demo-popcat',demo:true},
+ {name:'BOOK OF MEME',symbol:'BOME',price:0.0019,change:1.4,volume:1800000,liquidity:370000,address:'demo-bome',demo:true},
+ {name:'cat in a dogs world',symbol:'MEW',price:0.0027,change:-5.1,volume:950000,liquidity:220000,address:'demo-mew',demo:true},
+ {name:'Myro',symbol:'MYRO',price:0.018,change:3.1,volume:760000,liquidity:180000,address:'demo-myro',demo:true}
+];
+const $ = id => document.getElementById(id);
+let markets = DEMO.map(x=>({...x}));
+let live = false;
+let state = loadState();
+function initialState(){return {starting:1000,cash:1000,holdings:{},trades:[],settings:{tradeSize:25,maxPosition:100,stopLoss:15,takeProfit:30}}}
+function loadState(){try{const s=JSON.parse(localStorage.getItem('memepilot-paper-v1'));if(s&&typeof s.cash==='number'&&s.holdings&&Array.isArray(s.trades))return s}catch(e){}return initialState()}
+function persist(){try{localStorage.setItem('memepilot-paper-v1',JSON.stringify(state))}catch(e){}}
+function money(n){return '$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function price(n){if(!Number.isFinite(n))return '—';if(n>=1)return '$'+n.toLocaleString('en-US',{maximumFractionDigits:3});if(n>=.01)return '$'+n.toFixed(4);if(n>=.0001)return '$'+n.toFixed(6);return '$'+n.toPrecision(4)}
+function short(n){if(n>=1e9)return '$'+(n/1e9).toFixed(1)+'B';if(n>=1e6)return '$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return '$'+(n/1e3).toFixed(0)+'K';return '$'+Math.round(n||0)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function currentPrice(address){return markets.find(m=>m.address===address)?.price ?? state.holdings[address]?.lastPrice ?? 0}
+function totalEquity(){return state.cash+Object.entries(state.holdings).reduce((sum,[a,h])=>sum+h.qty*currentPrice(a),0)}
+function totalPnl(){return totalEquity()-state.starting}
+function renderStats(){const eq=totalEquity(),p=totalPnl();$('equity').textContent=money(eq);$('cash').textContent=money(state.cash);$('pnl').textContent=(p>=0?'+':'')+money(p);$('pnl').className='value '+(p>=0?'green':'red');$('pnlPct').textContent=((p/state.starting)*100).toFixed(2)+'% מאז ההתחלה';const count=Object.values(state.holdings).filter(h=>h.qty>0).length;$('holdCount').textContent=count;$('holdingSummary').textContent=count+' החזקות';}
+function renderMarkets(){const q=$('search').value.trim().toLowerCase(),sort=$('sort').value;let rows=markets.filter(m=>(m.name+' '+m.symbol).toLowerCase().includes(q));rows.sort((a,b)=>sort==='change'?b.change-a.change:sort==='liquidity'?b.liquidity-a.liquidity:b.volume-a.volume);$('marketRows').innerHTML=rows.map(m=>`<tr><td><div class="coin"><div class="coinIcon">${esc(m.symbol.slice(0,1))}</div><div><div class="coinName">${esc(m.symbol)}</div><div class="coinSub">${esc(m.name)}${m.demo?' · דוגמה':''}</div></div></div></td><td>${price(m.price)}</td><td class="${m.change>=0?'green':'red'}">${m.change>=0?'+':''}${m.change.toFixed(2)}%</td><td>${short(m.volume)}</td><td><button class="buyBtn" data-buy="${esc(m.address)}">קנה</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">לא נמצאו מטבעות.</td></tr>';$('marketRows').querySelectorAll('[data-buy]').forEach(b=>b.addEventListener('click',()=>buy(b.dataset.buy)));if(!live)$('marketStatus').textContent='נתוני דוגמה בלבד — לא מחירי שוק חיים. לחץ ״רענן מטבעות״ כדי לנסות להתחבר ל-DexScreener.'}
+function renderHoldings(){const list=Object.entries(state.holdings).filter(([a,h])=>h.qty>0);$('holdings').innerHTML=list.length?list.map(([a,h])=>{const m=markets.find(x=>x.address===a),p=currentPrice(a),val=h.qty*p,pnl=val-h.cost;return `<div class="holding"><div><strong>${esc(m?.symbol||h.symbol||'TOKEN')}</strong><small>${h.qty.toLocaleString('en-US',{maximumFractionDigits:5})} יח׳ · עלות ${money(h.cost)}</small></div><div class="holdingRight"><strong>${money(val)}</strong><small class="${pnl>=0?'green':'red'}">${pnl>=0?'+':''}${money(pnl)} (${h.cost?((pnl/h.cost)*100).toFixed(1):'0.0'}%)</small><button class="sellBtn" data-sell="${esc(a)}" style="margin-top:6px">מכור הכול</button></div></div>`}).join(''):'<div class="empty">עדיין אין החזקות.<br>בחר מטבע ולחץ על ״קנה״ כדי לתרגל.</div>';$('holdings').querySelectorAll('[data-sell]').forEach(b=>b.addEventListener('click',()=>sell(b.dataset.sell)))}
+function renderHistory(){$('tradeCount').textContent=state.trades.length+' עסקאות';const trades=state.trades.slice(0,12);$('history').innerHTML=trades.length?trades.map(t=>`<div class="historyItem"><div><strong class="${t.side==='BUY'?'green':'red'}">${t.side==='BUY'?'קנייה':'מכירה'} · ${esc(t.symbol)}</strong><small>${new Date(t.time).toLocaleString('he-IL')} · ${t.demo?'מחיר דוגמה':'מחיר שוק'}</small></div><div style="text-align:left"><strong>${money(t.usd)}</strong><small>${price(t.price)}</small></div></div>`).join(''):'<div class="empty">העסקאות המדומות שלך יופיעו כאן.</div>'}
+function renderAll(){renderStats();renderMarkets();renderHoldings();renderHistory()}
+function buy(address){if(state.trades.length>=10){alert('הגעת למגבלה של 10 עסקאות בסימולציה. אפס את הסימולציה כדי להתחיל מחדש.');return}const m=markets.find(x=>x.address===address);if(!m||!(m.price>0)){alert('אין מחיר זמין למטבע הזה.');return}const existing=state.holdings[address],size=Math.min(Number(state.settings.tradeSize)||25,Number(state.settings.maxPosition)||100);const already=existing?.cost||0;const spend=Math.min(size,state.cash,Math.max(0,(Number(state.settings.maxPosition)||100)-already));if(spend<1){alert('אין מספיק מזומן או שהגעת למגבלת ההחזקה למטבע.');return}if(m.demo&&!confirm('זהו מטבע דוגמה עם מחיר לא חי. לבצע קנייה מדומה לפי המחיר המוצג?'))return;state.cash-=spend;if(!state.holdings[address])state.holdings[address]={qty:0,cost:0,symbol:m.symbol,lastPrice:m.price,demo:!!m.demo};const h=state.holdings[address];h.qty+=spend/m.price;h.cost+=spend;h.lastPrice=m.price;h.symbol=m.symbol;h.demo=!!m.demo;state.trades.unshift({side:'BUY',address,symbol:m.symbol,usd:spend,price:m.price,time:Date.now(),demo:!!m.demo});persist();renderAll();notify('קנייה מדומה',`${m.symbol}: ${money(spend)}`)}
+function sell(address){if(state.trades.length>=10){alert('הגעת למגבלה של 10 עסקאות בסימולציה. אפס את הסימולציה כדי להתחיל מחדש.');return}const h=state.holdings[address],p=currentPrice(address);if(!h||!h.qty||!(p>0)){alert('לא נמצאה החזקה או מחיר זמין.');return}const m=markets.find(x=>x.address===address);if(h.demo&&!confirm('זהו מטבע דוגמה. לבצע מכירה מדומה לפי המחיר המוצג?'))return;const value=h.qty*p;state.cash+=value;state.trades.unshift({side:'SELL',address,symbol:m?.symbol||h.symbol,usd:value,price:p,time:Date.now(),demo:!!h.demo});delete state.holdings[address];persist();renderAll();notify('מכירה מדומה',`${m?.symbol||h.symbol}: ${money(value)}`)}
+function notify(title,body){if($('alerts').value!=='on')return;if('Notification'in window&&Notification.permission==='granted'){new Notification(title,{body})}else if('Notification'in window&&Notification.permission!=='denied'){Notification.requestPermission().then(p=>{if(p==='granted')new Notification(title,{body})})}}
+async function refresh(){const btn=$('refreshBtn');btn.disabled=true;btn.textContent='טוען…';$('marketStatus').textContent='מתחבר ל-DexScreener…';try{const res=await fetch('https://api.dexscreener.com/token-boosts/top/v1',{cache:'no-store'});if(!res.ok)throw new Error('API status '+res.status);const boosts=await res.json();const tokens=[...new Map((Array.isArray(boosts)?boosts:[]).filter(x=>x.chainId==='solana'&&x.tokenAddress).map(x=>[x.tokenAddress,x])).values()].slice(0,12);const found=await Promise.all(tokens.map(async t=>{try{const r=await fetch('https://api.dexscreener.com/token-pairs/v1/solana/'+encodeURIComponent(t.tokenAddress),{cache:'no-store'});if(!r.ok)return null;const pairs=await r.json();const valid=(Array.isArray(pairs)?pairs:[]).filter(p=>p.baseToken?.address===t.tokenAddress&&Number(p.priceUsd)>0&&p.liquidity?.usd>0);valid.sort((a,b)=>(b.liquidity?.usd||0)-(a.liquidity?.usd||0));const p=valid[0];if(!p)return null;return {name:p.baseToken.name||'Unknown',symbol:p.baseToken.symbol||'TOKEN',price:Number(p.priceUsd),change:Number(p.priceChange?.h24||0),volume:Number(p.volume?.h24||0),liquidity:Number(p.liquidity?.usd||0),address:t.tokenAddress,demo:false,pairUrl:p.url}}catch(e){return null}}));const valid=found.filter(Boolean);if(!valid.length)throw new Error('לא נמצאו זוגות זמינים');markets=valid;live=true;$('connectionText').textContent='נתוני שוק';$('updatedAt').textContent='עודכן '+new Date().toLocaleTimeString('he-IL');$('marketStatus').textContent='נתוני שוק חיים מ-DexScreener. מטבעות מובילים לפי בוסט אינם בהכרח המטבעות הטובים או הבטוחים ביותר.';$('systemStatus').textContent='מחירי השוק נטענו. הסימולציה אינה כוללת עמלות, החלקת מחיר או הבטחת ביצוע.';for(const [a,h] of Object.entries(state.holdings)){const m=markets.find(x=>x.address===a);if(m)h.lastPrice=m.price}persist();renderAll();checkRiskAlerts()}catch(e){live=false;markets=DEMO.map(x=>({...x}));$('connectionText').textContent='מצב סימולציה';$('updatedAt').textContent='אין נתונים חיים';$('marketStatus').textContent='לא ניתן לטעון נתונים חיים כרגע. מוצגים נתוני דוגמה בלבד, לא מחירים עדכניים.';$('systemStatus').textContent='חיבור השוק נכשל או שה-API אינו זמין בדפדפן. נסה שוב מאוחר יותר או פתח דרך אירוח HTTPS.';renderAll()}finally{btn.disabled=false;btn.textContent='↻ רענן מטבעות'}}
+function checkRiskAlerts(){for(const [a,h] of Object.entries(state.holdings)){const p=currentPrice(a);if(!p||!h.cost)continue;const pnlPct=((h.qty*p-h.cost)/h.cost)*100;if(pnlPct<=-(Number(state.settings.stopLoss)||15))notify('התראת סיכון',`${h.symbol}: ירידה של ${pnlPct.toFixed(1)}%. הסימולציה לא מוכרת אוטומטית.`);else if(pnlPct>=(Number(state.settings.takeProfit)||30))notify('יעד רווח',`${h.symbol}: רווח של ${pnlPct.toFixed(1)}%. הסימולציה לא מוכרת אוטומטית.`)}}
+$('search').addEventListener('input',renderMarkets);$('sort').addEventListener('change',renderMarkets);$('refreshBtn').addEventListener('click',refresh);
+$('applyCash').addEventListener('click',()=>{const n=Number($('startingCash').value);if(!Number.isFinite(n)||n<10||n>1000000){alert('בחר יתרת פתיחה בין 10 ל-1,000,000 דולר.');return}if(!confirm('פעולה זו מאפסת את התיק והעסקאות ומתחילה סימולציה חדשה. להמשיך?'))return;state=initialState();state.starting=n;state.cash=n;saveSettings(false);persist();renderAll();$('systemStatus').textContent='סימולציה חדשה נפתחה.'});
+function saveSettings(show=true){const size=Number($('tradeSize').value),max=Number($('maxPosition').value),sl=Number($('stopLoss').value),tp=Number($('takeProfit').value);if(!(size>0&&max>0&&sl>=1&&sl<=90&&tp>=1&&tp<=500)){alert('בדוק את ערכי הגדרות הסיכון.');return}state.settings={tradeSize:size,maxPosition:max,stopLoss:sl,takeProfit:tp};persist();if(show){$('systemStatus').textContent='ההגדרות נשמרו במכשיר.';}}
+$('saveSettings').addEventListener('click',()=>saveSettings(true));
+$('resetBtn').addEventListener('click',()=>{if(!confirm('לאפס את כל ההחזקות, המזומן והיסטוריית העסקאות?'))return;state=initialState();persist();fillSettings();renderAll()});
+function fillSettings(){$('startingCash').value=state.starting;$('tradeSize').value=state.settings.tradeSize;$('maxPosition').value=state.settings.maxPosition;$('stopLoss').value=state.settings.stopLoss;$('takeProfit').value=state.settings.takeProfit}
+$('notifyBtn').addEventListener('click',async()=>{if(!('Notification'in window)){alert('הדפדפן הזה לא תומך בהתראות.');return}const p=await Notification.requestPermission();if(p==='granted'){new Notification('MemePilot',{body:'ההתראות פועלות במכשיר הזה.'});$('alerts').value='on'}else alert('ההרשאה להתראות לא ניתנה. אפשר לבדוק בהגדרות הדפדפן.')});
+fillSettings();renderAll();refresh();
+setInterval(()=>{if(live)refresh()},120000);
+})();
+</script>
+</body>
+</html>
